@@ -1,17 +1,23 @@
+"use client";
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import React from 'react';
+import NavLink from './NavLink';
 
 const Header = () => {
+
+    const pathname = usePathname();
+    if(pathname.startsWith('/dashboard')) return null; // Hide header on dashboard pages
     return (
        <header className="px-4 py-3 border-b-2 border-gray-500 flex items-center justify-between">
-          <Link href="/" className="text-lg font-semibold">🐳 Dev Story</Link>
+          <NavLink href="/">🐳 Dev Story</NavLink>
 
           <nav className="space-x-4">
-           <Link href="/about" className="">About</Link>
-           <Link href="/stories" className="">Stories</Link>
-           <Link href="/tutorials" className="">Tutorials</Link>
-           <Link href="/login" className="">Login</Link>
-           <Link href="/register" className="">Register</Link>
+           <NavLink href="/about">About</NavLink>
+           <NavLink href="/stories">Stories</NavLink>
+           <NavLink href="/tutorials">Tutorials</NavLink>
+           <NavLink href="/login">Login</NavLink>
+           <NavLink href="/register">Register</NavLink>
            
           </nav>
         </header>
